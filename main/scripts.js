@@ -1,4 +1,3 @@
-// main/scripts.js
 'use strict';
 
 function qs(sel, ctx)  { return (ctx || document).querySelector(sel); }

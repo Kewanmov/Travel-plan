@@ -1,4 +1,3 @@
-// main/guard.js
 (function () {
     'use strict';
 

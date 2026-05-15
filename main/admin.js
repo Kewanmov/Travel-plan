@@ -1,4 +1,3 @@
-// main/admin.js
 'use strict';
 
 const $ = s => document.querySelector(s);

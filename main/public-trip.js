@@ -1,4 +1,3 @@
-// main/public-trip.js
 'use strict';
 
 function ptQs(s) { return document.querySelector(s); }

@@ -1,4 +1,3 @@
-// main/notifications-bell.js
 'use strict';
 
 (function () {

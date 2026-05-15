@@ -1,4 +1,3 @@
-// main/utils.js
 'use strict';
 
 function escHtml(str) {

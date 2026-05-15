@@ -1,4 +1,3 @@
-// main/attachments.js
 'use strict';
 
 (function () {

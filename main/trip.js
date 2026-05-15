@@ -1,4 +1,3 @@
-// main/trip.js
 'use strict';
 
 function qs(sel)  { return document.querySelector(sel); }

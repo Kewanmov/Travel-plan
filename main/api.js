@@ -1,4 +1,3 @@
-// main/api.js
 'use strict';
 
 const API_BASE = (typeof window !== 'undefined' && window.__API_BASE__) || 'http://127.0.0.1:8000/api';

@@ -1,4 +1,3 @@
-// main/header-user.js
 'use strict';
 
 (function () {
