@@ -1,4 +1,3 @@
-# backend/main.py
 import os
 from pathlib import Path
 from fastapi import FastAPI

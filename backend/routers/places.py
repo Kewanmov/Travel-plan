@@ -1,4 +1,3 @@
-# backend/routers/places.py
 from fastapi import APIRouter, Depends, Query, HTTPException
 from core.deps import get_current_user
 from core.config import DGIS_API_KEY, DGIS_BASE_URL

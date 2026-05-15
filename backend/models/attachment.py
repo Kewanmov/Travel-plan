@@ -1,4 +1,3 @@
-# backend/models/attachment.py
 from sqlalchemy import Column, Integer, String, Enum, TIMESTAMP, ForeignKey
 from sqlalchemy.sql import func
 from database import Base

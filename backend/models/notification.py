@@ -1,4 +1,3 @@
-# backend/models/notification.py
 from sqlalchemy import Column, Integer, String, Text, Enum, TIMESTAMP, JSON, ForeignKey
 from sqlalchemy.sql import func
 from database import Base

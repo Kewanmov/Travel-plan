@@ -1,4 +1,3 @@
-# backend/core/ratelimit.py
 import time
 from collections import defaultdict, deque
 from threading import Lock

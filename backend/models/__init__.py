@@ -1,4 +1,3 @@
-# backend/models/__init__.py — правильный порядок импортов
 from models.budget     import Currency, CurrencyRateHistory, BudgetCategory, BudgetItem
 from models.user       import User, UserSettings
 from models.trip       import Trip, TripMember, TripTag

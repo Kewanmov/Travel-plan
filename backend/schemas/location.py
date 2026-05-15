@@ -1,4 +1,3 @@
-# backend/schemas/location.py
 from pydantic import BaseModel, Field
 from typing import Optional, Literal
 from datetime import date, time

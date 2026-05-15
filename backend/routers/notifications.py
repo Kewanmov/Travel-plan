@@ -1,4 +1,3 @@
-# backend/routers/notifications.py
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from sqlalchemy import func

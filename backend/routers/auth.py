@@ -1,4 +1,3 @@
-# backend/routers/auth.py
 import os, secrets
 from pathlib import Path
 from fastapi import UploadFile, File

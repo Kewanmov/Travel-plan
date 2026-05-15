@@ -1,4 +1,3 @@
-# backend/models/comment.py
 from sqlalchemy import Column, Integer, Text, TIMESTAMP, ForeignKey
 from sqlalchemy.sql import func
 from database import Base

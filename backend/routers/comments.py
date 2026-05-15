@@ -1,4 +1,3 @@
-# backend/routers/comments.py
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, Field

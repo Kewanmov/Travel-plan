@@ -1,4 +1,3 @@
-# backend/models/task.py
 from sqlalchemy import Column, Integer, String, Text, Date, Enum, TIMESTAMP, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func

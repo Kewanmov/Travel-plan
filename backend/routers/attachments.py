@@ -1,4 +1,3 @@
-# backend/routers/attachments.py
 import os, secrets, mimetypes
 from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form, Query

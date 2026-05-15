@@ -1,4 +1,3 @@
-# backend/models/budget.py
 from sqlalchemy import Column, Integer, String, Text, TIMESTAMP, DECIMAL, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
