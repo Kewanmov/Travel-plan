@@ -11,9 +11,6 @@ env/
 .env
 *.env.local
 
-# Claude Code
-.claude/
-
 # OS
 .DS_Store
 Thumbs.db
