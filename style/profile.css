@@ -1,0 +1,561 @@
+/* style/profile.css */
+.pf-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(135deg, #161b2c 0%, #0f1424 60%);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 18px;
+    padding: 24px 28px;
+    margin: 18px 0 22px;
+    position: relative;
+    overflow: hidden;
+}
+
+.pf-hero::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(1, 171, 251, .25), transparent 70%);
+    pointer-events: none;
+}
+
+.pf-hero__avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #01abfb, #0086d6);
+    color: #fff;
+    font-size: 34px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 3px solid rgba(255, 255, 255, .1);
+    box-shadow: 0 8px 24px rgba(1, 171, 251, .4);
+}
+
+.pf-hero__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.pf-hero__name {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.pf-hero__email {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.pf-hero__since {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 6px;
+}
+
+.pf-hero__stats {
+    display: flex;
+    gap: 24px;
+    flex-shrink: 0;
+}
+
+.pf-hero__stat {
+    text-align: center;
+}
+
+.pf-hero__stat-val {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.pf-hero__stat-label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-top: 2px;
+}
+
+@media (max-width: 720px) {
+    .pf-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    .pf-hero__stats {
+        gap: 18px;
+        align-self: stretch;
+        justify-content: space-between;
+    }
+}
+
+.pf-tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 12px;
+    padding: 5px;
+    margin-bottom: 18px;
+    overflow-x: auto;
+}
+
+.pf-tab {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    color: #94a3b8;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: all .15s;
+}
+
+.pf-tab:hover {
+    color: #cbd5e1;
+    background: rgba(255, 255, 255, .03);
+}
+
+.pf-tab--active {
+    background: rgba(1, 171, 251, .12);
+    color: #01abfb;
+}
+
+.pf-panel {
+    display: none;
+}
+
+.pf-panel--active {
+    display: block;
+}
+
+.bg-card {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 14px;
+    padding: 20px 22px;
+}
+
+.bg-card__head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.bg-card__icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bg-card__icon--blue {
+    background: linear-gradient(135deg, #01abfb, #0086d6);
+}
+
+.bg-card__icon--orange {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+}
+
+.bg-card__icon--green {
+    background: linear-gradient(135deg, #4ade80, #16a34a);
+}
+
+.bg-card__icon--purple {
+    background: linear-gradient(135deg, #a78bfa, #7c3aed);
+}
+
+.bg-card__icon--red {
+    background: linear-gradient(135deg, #fb7185, #dc2626);
+}
+
+.bg-card__title {
+    margin: 0;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.bg-card__sub {
+    margin: 2px 0 0;
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.bg-add-btn {
+    background: rgba(1, 171, 251, .1);
+    color: #01abfb;
+    border: 0;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background .15s;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.bg-add-btn:hover {
+    background: rgba(1, 171, 251, .18);
+}
+
+.pf-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pf-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+@media (max-width: 640px) {
+    .pf-form__row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.pf-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.pf-form__label {
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pf-form__note {
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.pf-form__hint {
+    color: #64748b;
+    font-size: 11px;
+    text-align: right;
+    margin-top: 2px;
+}
+
+.tc-form__input,
+.pf-form input,
+.pf-form textarea {
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .12);
+    color: #fff;
+    padding: 11px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+    transition: all .15s;
+    width: 100%;
+}
+
+.tc-form__input:focus,
+.pf-form input:focus,
+.pf-form textarea:focus {
+    border-color: #01abfb;
+    background: rgba(255, 255, 255, .06);
+    box-shadow: 0 0 0 3px rgba(1, 171, 251, .15);
+}
+
+.tc-form__input::placeholder,
+.pf-form input::placeholder,
+.pf-form textarea::placeholder {
+    color: #64748b;
+}
+
+.pf-form input,
+.pf-form textarea,
+.pf-form .tc-form__input {
+    color: #000 !important;
+    caret-color: #000;
+    -webkit-text-fill-color: #000;
+}
+
+.pf-form input:focus,
+.pf-form textarea:focus,
+.pf-form .tc-form__input:focus {
+    color: #000 !important;
+    -webkit-text-fill-color: #000;
+}
+
+.pf-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+
+.pf-pass-wrap {
+    position: relative;
+}
+
+.pf-pass-wrap input {
+    padding-right: 44px;
+}
+
+.pf-eye {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: 0;
+    color: #64748b;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: color .15s, background .15s;
+    line-height: 0;
+}
+
+.pf-eye:hover {
+    color: #01abfb;
+    background: rgba(1, 171, 251, .1);
+}
+
+.pf-strength {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.pf-strength__bar {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, .08);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.pf-strength__fill {
+    height: 100%;
+    width: 0%;
+    background: #e74c3c;
+    border-radius: 3px;
+    transition: all .25s;
+}
+
+.pf-strength__label {
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 90px;
+    text-align: right;
+}
+
+.pf-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.pf-badge--green {
+    background: rgba(34, 197, 94, .15);
+    color: #4ade80;
+}
+
+.pf-badge--blue {
+    background: rgba(1, 171, 251, .15);
+    color: #01abfb;
+}
+
+.pf-danger-card {
+    border-color: rgba(251, 113, 133, .25);
+    background: rgba(251, 113, 133, .04);
+}
+
+.pf-danger-title {
+    color: #fb7185 !important;
+}
+
+.pf-btn-danger {
+    background: #dc2626;
+    color: #fff;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s;
+}
+
+.pf-btn-danger:hover {
+    background: #ef4444;
+}
+
+.pf-trips {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pf-trip-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all .15s;
+}
+
+.pf-trip-item:hover {
+    background: rgba(255, 255, 255, .06);
+    border-color: rgba(1, 171, 251, .3);
+    transform: translateX(2px);
+}
+
+.pf-trip-item__cover {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, .05);
+    flex-shrink: 0;
+}
+
+.pf-trip-item__info {
+    flex: 1;
+    min-width: 0;
+}
+
+.pf-trip-item__title {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pf-trip-item__meta {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.pf-trip-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.pf-trip-badge--blue {
+    background: rgba(1, 171, 251, .15);
+    color: #01abfb;
+}
+
+.pf-trip-badge--gray {
+    background: rgba(255, 255, 255, .08);
+    color: #94a3b8;
+}
+
+.pf-trips__empty {
+    padding: 30px;
+    text-align: center;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.pf-trips__empty a {
+    color: #01abfb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.pf-hero__avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.pf-hero__avatar {
+    background-size: cover;
+    background-position: center;
+}
+
+.pf-hero__avatar-edit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #01abfb;
+    border: 3px solid #161b2c;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s;
+}
+
+.pf-hero__avatar-edit:hover {
+    background: #0294dc;
+}
+
+.pf-hero__avatar-del {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #dc2626;
+    border: 2px solid #161b2c;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s;
+}
+
+.pf-hero__avatar-del:hover {
+    background: #ef4444;
+}

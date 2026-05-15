@@ -1,0 +1,37 @@
+/* style/public-trip.css */
+body.dash-body { 
+    padding-top: 0; 
+}
+
+.pt-header-center {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+
+.pt-public-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 12px;
+    background: rgba(1, 171, 251, .12);
+    border: 1px solid rgba(1, 171, 251, .25);
+    border-radius: 999px;
+    color: #01abfb; font-size: 13px; font-weight: 600;
+    white-space: nowrap;
+}
+
+.pt-day-head {
+    margin: 18px 0 8px; padding: 8px 12px;
+    background: rgba(1, 171, 251, .12);
+    border-left: 3px solid #01abfb;
+    border-radius: 6px; color: #01abfb; font-weight: 700; font-size: 14px;
+}
+
+.pt-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: #98a2b3;
+}
+
+@media (max-width: 720px) {
+    .pt-header-center { display: none; }
+}

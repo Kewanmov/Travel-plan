@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Публичная поездка — TravelPlan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/dashboard.css">
+    <link rel="stylesheet" href="style/trip.css">
+    <link rel="stylesheet" href="style/public-trip.css"></head>
+<body class="dash-body">
+
+<header class="header header--solid" id="header">
+    <div class="header__inner">
+        <a href="index.html" class="logo">
+            <div class="logo__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#fff"/>
+                </svg>
+            </div>
+            <span>TravelPlan</span>
+        </a>
+        <div class="pt-header-center">
+            <span class="pt-public-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+                <span id="ptOwner">Публичная поездка</span>
+            </span>
+        </div>
+        <div class="header__actions">
+            <a href="login.html" class="btn btn--primary btn--sm">Войти</a>
+        </div>
+    </div>
+</header>
+<div style="height:68px"></div>
+
+<div class="dash-page">
+    <div class="container">
+
+        <div id="ptSkeleton" class="tp-skeleton">
+            <div class="tp-skeleton__head">
+                <div class="skeleton-line skeleton-line--title"></div>
+                <div class="skeleton-line skeleton-line--sub"></div>
+            </div>
+            <div class="tp-skeleton__hero skeleton-box"></div>
+        </div>
+
+        <div id="ptContent" style="display:none">
+
+            <div class="tp-hero">
+                <div class="tp-hero__bg" id="ptHeroBg"></div>
+                <div class="tp-hero__overlay"></div>
+                <div class="tp-hero__body">
+                    <div class="tp-hero__info">
+                        <div class="tp-hero__badges">
+                            <span class="tp-badge tp-badge--light" id="ptDuration"></span>
+                        </div>
+                        <h1 class="tp-hero__title" id="ptTitle"></h1>
+                        <div class="tp-hero__meta">
+                            <span class="tp-hero__meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="rgba(255,255,255,0.8)"/>
+                                </svg>
+                                <span id="ptLocation"></span>
+                            </span>
+                            <span class="tp-hero__meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" stroke="rgba(255,255,255,0.8)" stroke-width="1.8"/>
+                                    <path d="M16 2v4M8 2v4M3 10h18" stroke="rgba(255,255,255,0.8)" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                                <span id="ptDates"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tp-grid">
+                <div class="tp-col">
+
+                    <div class="tp-card" id="ptDescCard">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--blue"></div>
+                            <h2 class="tp-card__title">Описание</h2>
+                        </div>
+                        <p class="tp-desc" id="ptDescText"></p>
+                    </div>
+
+                    <div class="tp-card">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--green"></div>
+                            <div>
+                                <h2 class="tp-card__title">Маршрут</h2>
+                                <p class="tp-card__sub" id="ptMapSub">Нет точек</p>
+                            </div>
+                        </div>
+                        <div class="tp-map-wrap">
+                            <div id="ptMap" class="tp-map"></div>
+                        </div>
+                        <div class="tp-route" id="ptRoute"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="ptError" style="display:none" class="pt-empty">
+            <h2 style="color:#fff;margin:0 0 8px">Поездка недоступна</h2>
+            <p>Возможно владелец отключил публичный доступ или такой поездки не существует.</p>
+            <p><a href="index.html" style="color:#01abfb">На главную</a></p>
+        </div>
+    </div>
+</div>
+
+<div id="toasts"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="main/utils.js"></script>
+<script src="main/api.js"></script>
+<script src="main/public-trip.js"></script>
+</body>
+</html>

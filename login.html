@@ -1,0 +1,157 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Войти — TravelPlan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/auth.css">
+</head>
+<body class="auth-body">
+
+<div class="auth-split">
+
+    <div class="auth-split__photo">
+        <img src="img/login-bg.jpg" alt="Путешествие">
+        <div class="auth-split__photo-overlay"></div>
+        <a href="index.html" class="auth-split__logo logo">
+            <div class="logo__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#fff"/>
+                </svg>
+            </div>
+            <span>TravelPlan</span>
+        </a>
+        <div class="auth-split__photo-caption">
+            <div class="auth-split__caption-title">Санторини, Греция</div>
+            <div class="auth-split__caption-sub">Планируй свою следующую поездку</div>
+        </div>
+    </div>
+
+    <div class="auth-split__form">
+        <div class="auth-form-wrap">
+
+            <div class="auth-tabs" id="authTabs">
+                <button class="auth-tab auth-tab--active" data-tab="login">Войти</button>
+                <button class="auth-tab" data-tab="register">Регистрация</button>
+            </div>
+
+            <div class="auth-alert" id="authAlert" style="display:none"></div>
+
+            <form id="loginForm" class="auth-form" novalidate>
+                <h2 class="auth-form__title">Добро пожаловать</h2>
+
+                <div class="auth-form__group">
+                    <label class="auth-form__label" for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" class="auth-form__input" placeholder="example@mail.ru" autocomplete="email">
+                    <span class="auth-form__error" id="emailError"></span>
+                </div>
+
+                <div class="auth-form__group">
+                    <label class="auth-form__label" for="loginPassword">
+                        <span>Пароль</span>
+                        <a href="#" class="auth-form__label-link">Забыли пароль?</a>
+                    </label>
+                    <div class="auth-form__pass-wrap">
+                        <input type="password" id="loginPassword" class="auth-form__input" placeholder="Введите пароль" autocomplete="current-password">
+                        <button type="button" class="auth-form__eye" data-target="loginPassword">
+                            <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.8"/>
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                            </svg>
+                            <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:none">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="auth-form__error" id="passwordError"></span>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--auth" id="loginBtn">Войти</button>
+            </form>
+
+            <form id="registerForm" class="auth-form" style="display:none" novalidate>
+                <h2 class="auth-form__title">Создать аккаунт</h2>
+
+                <div class="auth-form__group">
+                    <label class="auth-form__label" for="regName">Имя</label>
+                    <input type="text" id="regName" class="auth-form__input" placeholder="Как вас зовут" autocomplete="name">
+                    <span class="auth-form__error" id="nameError"></span>
+                </div>
+
+                <div class="auth-form__group">
+                    <label class="auth-form__label" for="regEmail">Email</label>
+                    <input type="email" id="regEmail" class="auth-form__input" placeholder="example@mail.ru" autocomplete="email">
+                    <span class="auth-form__error" id="regEmailError"></span>
+                </div>
+
+                <div class="auth-form__group">
+                    <label class="auth-form__label" for="regPassword">Пароль</label>
+                    <div class="auth-form__pass-wrap">
+                        <input type="password" id="regPassword" class="auth-form__input" placeholder="Минимум 8 символов" autocomplete="new-password">
+                        <button type="button" class="auth-form__eye" data-target="regPassword">
+                            <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.8"/>
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                            </svg>
+                            <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:none">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="auth-strength" id="passStrength" style="display:none">
+                        <div class="auth-strength__bar">
+                            <div class="auth-strength__fill" id="strengthFill"></div>
+                        </div>
+                        <span class="auth-strength__label" id="strengthLabel"></span>
+                    </div>
+                    <span class="auth-form__error" id="regPasswordError"></span>
+                </div>
+
+                <div class="auth-form__group">
+                    <label class="auth-form__label" for="regPasswordConfirm">Повторите пароль</label>
+                    <div class="auth-form__pass-wrap">
+                        <input type="password" id="regPasswordConfirm" class="auth-form__input" placeholder="Повторите пароль" autocomplete="new-password">
+                        <button type="button" class="auth-form__eye" data-target="regPasswordConfirm">
+                            <svg class="eye-open" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="1.8"/>
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                            </svg>
+                            <svg class="eye-closed" width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:none">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="auth-form__error" id="confirmError"></span>
+                </div>
+
+                <div class="auth-form__check">
+                    <label class="auth-check">
+                        <input type="checkbox" id="agree" class="auth-check__input">
+                        <span class="auth-check__box"></span>
+                        <span class="auth-check__label">Я согласен с <a href="#">условиями использования</a></span>
+                    </label>
+                    <span class="auth-form__error" id="agreeError"></span>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--auth" id="registerBtn">Создать аккаунт</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<div id="toasts"></div>
+<script src="main/utils.js"></script>
+<script src="main/api.js"></script>
+<script src="main/guard.js"></script>
+<script src="main/auth.js"></script>
+</body>
+</html>

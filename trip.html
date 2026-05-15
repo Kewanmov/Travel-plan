@@ -1,0 +1,531 @@
+<!-- trip.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поездка — TravelPlan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/dashboard.css">
+    <link rel="stylesheet" href="style/trip.css"></head>
+<body class="dash-body">
+
+<header class="header header--solid" id="header">
+    <div class="header__inner">
+        <a href="index.html" class="logo">
+            <div class="logo__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#fff"/>
+                </svg>
+            </div>
+            <span>TravelPlan</span>
+        </a>
+
+        <nav class="nav" id="nav">
+            <a href="dashboard.html" class="nav__link nav__link--active">Мои поездки</a>
+            <a href="trip-create.html" class="nav__link">Новая поездка</a>
+            <a href="budget.html" class="nav__link">Бюджет</a>
+            <a href="checklist.html" class="nav__link">Чеклисты</a>
+        </nav>
+
+        <div class="header__actions">
+            <div class="user-pill" id="userPill">
+                <div class="user-pill__avatar" id="headerAvatar"></div>
+                <span class="user-pill__name" id="headerName"></span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <div class="user-pill__dropdown">
+                    <div class="user-pill__dropdown-info">
+                        <div class="user-pill__dropdown-name" id="dropName"></div>
+                        <div class="user-pill__dropdown-email" id="dropEmail"></div>
+                    </div>
+                    <div class="user-pill__dropdown-divider"></div>
+                    <a href="profile.html" class="user-pill__dropdown-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        Профиль
+                    </a>
+                    <div class="user-pill__dropdown-divider"></div>
+                    <button class="user-pill__dropdown-item user-pill__dropdown-item--danger" id="logoutBtn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="dashboard.html" class="mobile-menu__link">Мои поездки</a>
+        <a href="trip-create.html" class="mobile-menu__link">Новая поездка</a>
+        <a href="budget.html" class="mobile-menu__link">Бюджет</a>
+        <a href="checklist.html" class="mobile-menu__link">Чеклисты</a>
+        <div class="mobile-menu__divider"></div>
+        <a href="profile.html" class="mobile-menu__link">Профиль</a>
+        <button class="mobile-menu__link mobile-menu__link--danger" id="logoutMobile">Выйти</button>
+    </div>
+</header>
+
+<div class="dash-page">
+    <div class="container">
+
+        <div id="tripSkeleton" class="tp-skeleton">
+            <div class="tp-skeleton__head">
+                <div class="skeleton-line skeleton-line--title"></div>
+                <div class="skeleton-line skeleton-line--sub"></div>
+            </div>
+            <div class="tp-skeleton__hero skeleton-box"></div>
+            <div class="tp-skeleton__grid">
+                <div class="skeleton-box"></div>
+                <div class="skeleton-box"></div>
+                <div class="skeleton-box"></div>
+            </div>
+        </div>
+
+        <div id="tripContent" style="display:none">
+
+            <div class="tp-hero">
+                <div class="tp-hero__bg" id="heroBg"></div>
+                <div class="tp-hero__overlay"></div>
+                <div class="tp-hero__body">
+                    <div class="tp-hero__top">
+                        <a href="dashboard.html" class="btn btn--glass btn--sm">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                                <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Назад
+                        </a>
+                        <div class="tp-hero__actions" id="heroOwnerActions" style="display:none">
+                            <button class="btn btn--glass btn--sm" id="shareTripBtn" title="Поделиться">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="18" cy="5"  r="3" stroke="currentColor" stroke-width="1.8"/>
+                                    <circle cx="6"  cy="12" r="3" stroke="currentColor" stroke-width="1.8"/>
+                                    <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.8"/>
+                                    <line x1="8.6"  y1="13.5" x2="15.4" y2="17.5" stroke="currentColor" stroke-width="1.8"/>
+                                    <line x1="15.4" y1="6.5"  x2="8.6"  y2="10.5" stroke="currentColor" stroke-width="1.8"/>
+                                </svg>
+                                <span id="shareTripBtnLabel">Поделиться</span>
+                            </button>
+                            <button class="btn btn--glass btn--sm" id="editTripBtn">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                                Редактировать
+                            </button>
+                            <button class="btn btn--glass-danger btn--sm" id="deleteTripBtn">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                                    <polyline points="3 6 5 6 21 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                                Удалить
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tp-hero__info">
+                        <div class="tp-hero__badges">
+                            <span class="tp-badge" id="heroStatus"></span>
+                            <span class="tp-badge tp-badge--light" id="heroDuration"></span>
+                        </div>
+                        <h1 class="tp-hero__title" id="heroTitle"></h1>
+                        <div class="tp-hero__meta">
+                            <span class="tp-hero__meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="rgba(255,255,255,0.8)"/>
+                                </svg>
+                                <span id="heroLocationText"></span>
+                            </span>
+                            <span class="tp-hero__meta-item">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" stroke="rgba(255,255,255,0.8)" stroke-width="1.8"/>
+                                    <path d="M16 2v4M8 2v4M3 10h18" stroke="rgba(255,255,255,0.8)" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                                <span id="heroDatesText"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tp-stats">
+                <div class="tp-stat">
+                    <div class="tp-stat__icon tp-stat__icon--blue">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" stroke="#fff" stroke-width="1.8"/>
+                        </svg>
+                    </div>
+                    <div class="tp-stat__body">
+                        <div class="tp-stat__val" id="statPoints">0</div>
+                        <div class="tp-stat__label">Точек маршрута</div>
+                    </div>
+                </div>
+                <div class="tp-stat">
+                    <div class="tp-stat__icon tp-stat__icon--green">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                            <path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z" stroke="#fff" stroke-width="1.8"/>
+                        </svg>
+                    </div>
+                    <div class="tp-stat__body">
+                        <div class="tp-stat__val" id="statBudget">—</div>
+                        <div class="tp-stat__label">Бюджет</div>
+                    </div>
+                </div>
+                <div class="tp-stat">
+                    <div class="tp-stat__icon tp-stat__icon--purple">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                            <circle cx="9" cy="7" r="4" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="tp-stat__body">
+                        <div class="tp-stat__val" id="statMembers">1</div>
+                        <div class="tp-stat__label">Участников</div>
+                    </div>
+                </div>
+                <div class="tp-stat">
+                    <div class="tp-stat__icon tp-stat__icon--orange">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 11l3 3L22 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="tp-stat__body">
+                        <div class="tp-stat__val" id="statTasks">0/0</div>
+                        <div class="tp-stat__label">Задач выполнено</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tp-grid">
+
+                <div class="tp-col">
+
+                    <div class="tp-card" id="descCard">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--blue">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <polyline points="14 2 14 8 20 8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <line x1="16" y1="13" x2="8" y2="13" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <line x1="16" y1="17" x2="8" y2="17" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h2 class="tp-card__title">Описание</h2>
+                        </div>
+                        <p class="tp-desc" id="tripDescText"></p>
+                    </div>
+
+                    <div class="tp-card">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--green">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" stroke="#fff" stroke-width="1.8"/>
+                                    <line x1="8" y1="2" x2="8" y2="18" stroke="#fff" stroke-width="1.8"/>
+                                    <line x1="16" y1="6" x2="16" y2="22" stroke="#fff" stroke-width="1.8"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="tp-card__title">Маршрут</h2>
+                                <p class="tp-card__sub" id="mapSubtitle">Нет точек</p>
+                            </div>
+                        </div>
+                        <div class="tp-map-wrap">
+                            <div id="tripMap" class="tp-map"></div>
+                        </div>
+                        <div class="tp-route" id="routeList"></div>
+                    </div>
+
+
+                    <div class="tp-card" id="statsCard" style="display:none">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--purple">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <line x1="12" y1="20" x2="12" y2="10" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <line x1="18" y1="20" x2="18" y2="4"  stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <line x1="6"  y1="20" x2="6"  y2="14" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="tp-card__title">Статистика</h2>
+                                <p class="tp-card__sub">Расходы и прогресс</p>
+                            </div>
+                        </div>
+
+                        <div class="stats-progress">
+                            <div class="stats-prog-row" id="statsBudgetRow" style="display:none">
+                                <div class="stats-prog-head">
+                                    <span>Бюджет использован</span>
+                                    <span><b id="statsSpent">0</b> / <span id="statsLimit">0</span></span>
+                                </div>
+                                <div class="stats-prog-bar"><div class="stats-prog-bar__fill" id="statsBudgetFill"></div></div>
+                                <div id="statsPaidNote" style="display:none;font-size:12px;color:#98a2b3;margin-top:4px"></div>
+                            </div>
+                            <div class="stats-prog-row">
+                                <div class="stats-prog-head">
+                                    <span>Задачи выполнены</span>
+                                    <span><b id="statsTasksDone">0</b> / <span id="statsTasksTotal">0</span></span>
+                                </div>
+                                <div class="stats-prog-bar"><div class="stats-prog-bar__fill stats-prog-bar__fill--green" id="statsTasksFill"></div></div>
+                            </div>
+                        </div>
+
+                        <div class="stats-charts">
+                            <div class="stats-chart">
+                                <div class="stats-chart__title">По категориям</div>
+                                <div class="stats-chart__body">
+                                    <canvas id="statsCatChart" height="180"></canvas>
+                                </div>
+                                <div class="stats-cat-list" id="statsCatList"></div>
+                            </div>
+                            <div class="stats-chart">
+                                <div class="stats-chart__title">По дням</div>
+                                <div class="stats-chart__body">
+                                    <canvas id="statsDayChart" height="180"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stats-empty" id="statsEmpty" style="display:none">Пока нет данных по расходам</div>
+                    </div>
+
+                    <div class="tp-card" id="budgetCard">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--orange">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z" stroke="#fff" stroke-width="1.8"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="tp-card__title">Бюджет</h2>
+                                <p class="tp-card__sub" id="budgetSubtitle">Не установлен</p>
+                            </div>
+                        </div>
+                        <div id="budgetContent"></div>
+                    </div>
+
+                </div>
+
+                <div class="tp-col">
+
+                    <div class="tp-card">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--blue">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="1.8"/>
+                                    <line x1="12" y1="8" x2="12" y2="12" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <line x1="12" y1="16" x2="12.01" y2="16" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h2 class="tp-card__title">Детали</h2>
+                        </div>
+                        <div class="tp-details">
+                            <div class="tp-detail-row">
+                                <span class="tp-detail-row__label">Статус</span>
+                                <span class="tp-detail-row__val" id="detailStatus">—</span>
+                            </div>
+                            <div class="tp-detail-row">
+                                <span class="tp-detail-row__label">Город</span>
+                                <span class="tp-detail-row__val" id="detailCity">—</span>
+                            </div>
+                            <div class="tp-detail-row">
+                                <span class="tp-detail-row__label">Страна</span>
+                                <span class="tp-detail-row__val" id="detailCountry">—</span>
+                            </div>
+                            <div class="tp-detail-row">
+                                <span class="tp-detail-row__label">Начало</span>
+                                <span class="tp-detail-row__val" id="detailStart">—</span>
+                            </div>
+                            <div class="tp-detail-row">
+                                <span class="tp-detail-row__label">Конец</span>
+                                <span class="tp-detail-row__val" id="detailEnd">—</span>
+                            </div>
+                            <div class="tp-detail-row">
+                                <span class="tp-detail-row__label">Дней</span>
+                                <span class="tp-detail-row__val" id="detailDuration">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tp-card">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--purple">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                    <circle cx="9" cy="7" r="4" stroke="#fff" stroke-width="1.8"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="tp-card__title">Участники</h2>
+                                <p class="tp-card__sub" id="membersSubtitle"></p>
+                            </div>
+                        </div>
+                        <div class="tp-members" id="membersList"></div>
+                    </div>
+
+                    <div class="tp-card">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--green">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="tp-card__title">Обсуждение</h2>
+                                <p class="tp-card__sub" id="commentsSub">Загрузка…</p>
+                            </div>
+                        </div>
+                        <div class="tp-comments" id="commentsList"></div>
+                        <div class="tp-comment-form" id="commentForm">
+                            <textarea id="commentInput" class="tp-comment-input"
+                                      placeholder="Написать сообщение участникам…"
+                                      rows="2" maxlength="2000"></textarea>
+                            <button class="tp-comment-send" id="commentSend">Отправить</button>
+                        </div>
+                    </div>
+
+                    <div class="tp-card">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--blue">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#fff" stroke-width="1.8"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5" stroke="#fff" stroke-width="1.8"/>
+                                    <polyline points="21 15 16 10 5 21" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="tp-card__title">Фото и документы</h2>
+                                <p class="tp-card__sub">Прикреплённые к поездке</p>
+                            </div>
+                        </div>
+                        <div id="tripAttachments"></div>
+                    </div>
+
+                    <div class="tp-card">
+                        <div class="tp-card__head">
+                            <div class="tp-card__icon tp-card__icon--green">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 11l3 3L22 4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h2 class="tp-card__title">Чеклист</h2>
+                                <p class="tp-card__sub" id="tasksSubtitle">Нет задач</p>
+                            </div>
+                        </div>
+                        <div class="tp-progress-bar" id="tasksProgress" style="display:none">
+                            <div class="tp-progress-bar__fill" id="tasksProgressFill"></div>
+                        </div>
+                        <div class="tp-tasks" id="tasksList"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="tripError" class="tp-error" style="display:none">
+            <div class="tp-error__icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="#d0d5dd" stroke-width="1.5"/>
+                    <line x1="12" y1="8" x2="12" y2="12" stroke="#d0d5dd" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16" stroke="#d0d5dd" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h2 class="tp-error__title">Поездка не найдена</h2>
+            <p class="tp-error__sub">Возможно она была удалена или у вас нет доступа</p>
+            <a href="dashboard.html" class="btn btn--primary btn--sm">Вернуться к поездкам</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-overlay" id="shareModal" style="display:none">
+    <div class="modal modal--sm">
+        <div class="modal__head">
+            <h3 class="modal__title">Поделиться поездкой</h3>
+            <button class="modal__close" id="shareModalClose">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <line x1="18" y1="6" x2="6" y2="18" stroke="#98a2b3" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="6" x2="18" y2="18" stroke="#98a2b3" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        <p class="modal__desc" id="shareModalDesc">Включите публичный доступ — и любой по ссылке сможет посмотреть поездку.</p>
+
+        <label style="display:flex;align-items:center;gap:10px;margin:8px 0 14px;cursor:pointer;font-size:14px;color:#fff">
+            <input type="checkbox" id="sharePublicToggle" style="width:18px;height:18px;cursor:pointer">
+            <span>Сделать поездку публичной</span>
+        </label>
+
+        <div id="shareLinkWrap" style="display:none">
+            <div style="display:flex;gap:8px">
+                <input id="shareLinkInput" type="text" readonly
+                       style="flex:1;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.05);color:#fff;font-size:13px">
+                <button class="btn btn--primary btn--sm" id="shareCopyBtn">Копировать</button>
+            </div>
+            <p style="margin-top:10px;font-size:12px;color:#98a2b3">
+                Эту ссылку можно открыть без авторизации.
+            </p>
+        </div>
+
+        <div class="modal__actions" style="margin-top:14px">
+            <button class="btn btn--ghost-dark btn--sm" id="shareModalCancel">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-overlay" id="deleteModal" style="display:none">
+    <div class="modal modal--sm">
+        <div class="modal__head">
+            <h3 class="modal__title">Удалить поездку?</h3>
+            <button class="modal__close" id="deleteModalClose">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <line x1="18" y1="6" x2="6" y2="18" stroke="#98a2b3" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="6" x2="18" y2="18" stroke="#98a2b3" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        <p class="modal__desc">Это действие нельзя отменить. Все данные поездки будут удалены навсегда.</p>
+        <div class="modal__actions">
+            <button class="btn btn--ghost-dark btn--sm" id="deleteModalCancel">Отмена</button>
+            <button class="btn btn--danger btn--sm" id="deleteModalConfirm">Удалить</button>
+        </div>
+    </div>
+</div>
+
+<div id="toasts"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script src="main/utils.js"></script>
+<script src="main/api.js"></script>
+<script src="main/guard.js"></script>
+<script src="main/notifications-bell.js"></script>
+<script src="main/header-user.js"></script>
+<script src="main/attachments.js"></script>
+<script src="main/trip.js"></script>
+</body>
+</html>

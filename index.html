@@ -1,0 +1,314 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelPlan — Планировщик путешествий</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/dashboard.css">
+</head>
+<body class="landing-page">
+
+<header class="header header--light" id="header">
+    <div class="header__inner">
+        <a href="index.html" class="logo logo--dark">
+            <div class="logo__icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#fff"/>
+                </svg>
+            </div>
+            <span>TravelPlan</span>
+        </a>
+
+        <div class="header__actions" id="headerActions">
+            <a href="login.html" class="btn btn--outline-dark btn--sm" id="loginBtn">Войти</a>
+            <div class="user-pill" id="userPill" style="display:none">
+                <div class="user-pill__avatar" id="headerAvatar"></div>
+                <span class="user-pill__name" id="headerName"></span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9l6 6 6-6" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <div class="user-pill__dropdown">
+                    <div class="user-pill__dropdown-info">
+                        <div class="user-pill__dropdown-name" id="dropName"></div>
+                        <div class="user-pill__dropdown-email" id="dropEmail"></div>
+                    </div>
+                    <div class="user-pill__dropdown-divider"></div>
+                    <a href="dashboard.html" class="user-pill__dropdown-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                        </svg>
+                        Мои поездки
+                    </a>
+                    <a href="profile.html" class="user-pill__dropdown-item">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.8"/>
+                            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        Профиль
+                    </a>
+                    <div class="user-pill__dropdown-divider"></div>
+                    <button class="user-pill__dropdown-item user-pill__dropdown-item--danger" id="logoutBtn">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        Выйти
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <button class="burger burger--dark" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu mobile-menu--light" id="mobileMenu">
+        <a href="login.html" class="mobile-menu__link">Войти</a>
+        <a href="login.html#register" class="mobile-menu__link">Регистрация</a>
+    </div>
+</header>
+
+<section class="l-hero">
+    <div class="l-hero__left">
+        <div class="l-hero__eyebrow">
+            <span class="l-eyebrow-dot"></span>
+            Планировщик путешествий
+        </div>
+        <h1 class="l-hero__title">
+            Планируй.<br>
+            Исследуй.<br>
+            <em>Путешествуй.</em>
+        </h1>
+        <p class="l-hero__sub">
+            Маршруты на карте, учёт бюджета, чеклисты и совместное планирование — всё в одном месте.
+        </p>
+        <div class="l-hero__actions">
+            <a href="login.html" class="l-btn-main">
+                Начать
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+        <div class="l-hero__chips">
+            <span class="l-chip">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" stroke="currentColor" stroke-width="2"/></svg>
+                Карта маршрута
+            </span>
+            <span class="l-chip">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z" stroke="currentColor" stroke-width="2"/></svg>
+                Учёт бюджета
+            </span>
+            <span class="l-chip">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                Совместно
+            </span>
+        </div>
+    </div>
+
+    <div class="l-hero__right">
+        <div class="l-photo-collage">
+            <div class="l-photo l-photo--main">
+                <img src="img/beach.jpg" alt="Пляж" loading="eager">
+                <div class="l-photo__label">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor"/></svg>
+                    Мальдивы
+                </div>
+            </div>
+            <div class="l-photo-row">
+                <div class="l-photo l-photo--sm">
+                    <img src="img/tokyo.jpg" alt="Токио" loading="lazy">
+                    <div class="l-photo__label">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor"/></svg>
+                        Токио
+                    </div>
+                </div>
+                <div class="l-photo l-photo--sm">
+                    <img src="img/bali.jpg" alt="Бали" loading="lazy">
+                    <div class="l-photo__label">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor"/></svg>
+                        Бали
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="l-section" id="destinations">
+    <div class="container">
+        <div class="l-section__head">
+            <div class="l-section__eyebrow">Направления</div>
+            <h2 class="l-section__title">Куда поедем?</h2>
+            <p class="l-section__sub">Добавляй места прямо на карте — рестораны, пляжи, музеи, отели</p>
+        </div>
+
+        <div class="l-destinations">
+            <div class="l-dest l-dest--tall">
+                <img src="img/santorini.jpg" alt="Санторини" loading="lazy">
+                <div class="l-dest__overlay"></div>
+                <div class="l-dest__body">
+                    <div class="l-dest__title">Санторини</div>
+                    <div class="l-dest__sub">Греция</div>
+                </div>
+            </div>
+            <div class="l-dest__col">
+                <div class="l-dest l-dest--wide">
+                    <img src="img/istanbul.jpg" alt="Стамбул" loading="lazy">
+                    <div class="l-dest__overlay"></div>
+                    <div class="l-dest__body">
+                        <div class="l-dest__title">Стамбул</div>
+                        <div class="l-dest__sub">Турция</div>
+                    </div>
+                </div>
+                <div class="l-dest__row">
+                    <div class="l-dest">
+                        <img src="img/london.jpg" alt="Лондон" loading="lazy">
+                        <div class="l-dest__overlay"></div>
+                        <div class="l-dest__body">
+                            <div class="l-dest__title">Лондон</div>
+                            <div class="l-dest__sub">Великобритания</div>
+                        </div>
+                    </div>
+                    <div class="l-dest">
+                        <img src="img/rome.jpg" alt="Рим" loading="lazy">
+                        <div class="l-dest__overlay"></div>
+                        <div class="l-dest__body">
+                            <div class="l-dest__title">Рим</div>
+                            <div class="l-dest__sub">Италия</div>
+                        </div>
+                    </div>
+                    <div class="l-dest">
+                        <img src="img/restaurants.jpg" alt="Рестораны" loading="lazy">
+                        <div class="l-dest__overlay"></div>
+                        <div class="l-dest__body">
+                            <div class="l-dest__title">Рестораны</div>
+                            <div class="l-dest__sub">Лучшие места</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="l-dest-more">
+            <a href="login.html" class="l-dest-more__link">
+                Начать планировать
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="l-section l-section--blue">
+    <div class="container">
+        <div class="l-section__head">
+            <div class="l-section__eyebrow l-section__eyebrow--light">Как это работает</div>
+            <h2 class="l-section__title l-section__title--light">Три шага до идеальной поездки</h2>
+        </div>
+
+        <div class="l-steps">
+            <div class="l-step">
+                <div class="l-step__num">01</div>
+                <div class="l-step__img">
+                    <img src="img/step-create.jpg" alt="Создай поездку" loading="lazy">
+                </div>
+                <h3 class="l-step__title">Создай поездку</h3>
+                <p class="l-step__text">Укажи город, даты и бюджет. Пригласи друзей — они смогут добавлять места вместе с тобой.</p>
+            </div>
+            <div class="l-step">
+                <div class="l-step__num">02</div>
+                <div class="l-step__img">
+                    <img src="img/step-route.jpg" alt="Составь маршрут" loading="lazy">
+                </div>
+                <h3 class="l-step__title">Составь маршрут</h3>
+                <p class="l-step__text">Ищи рестораны, пляжи, достопримечательности и добавляй их на карту с временем визита.</p>
+            </div>
+            <div class="l-step">
+                <div class="l-step__num">03</div>
+                <div class="l-step__img">
+                    <img src="img/step-go.jpg" alt="Отправляйся" loading="lazy">
+                </div>
+                <h3 class="l-step__title">Отправляйся</h3>
+                <p class="l-step__text">Весь маршрут, бюджет и чеклист у тебя под рукой. Отмечай посещённые места в поездке.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="l-cta">
+    <div class="l-cta__bg">
+        <img src="img/footer-hero.jpg" alt="" loading="lazy">
+        <div class="l-cta__overlay"></div>
+    </div>
+    <div class="container">
+        <div class="l-cta__body">
+            <h2 class="l-cta__title">Готов к следующему<br>путешествию?</h2>
+            <p class="l-cta__sub">Войди или создай аккаунт — это займёт меньше минуты.</p>
+            <a href="login.html" class="l-btn-main l-btn-main--lg">
+                Войти
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer class="l-footer">
+    <div class="container">
+        <div class="l-footer__top">
+            <div class="l-footer__brand">
+                <a href="index.html" class="logo">
+                    <div class="logo__icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#fff"/>
+                        </svg>
+                    </div>
+                    <span>TravelPlan</span>
+                </a>
+                <p class="l-footer__tagline">Планируй путешествия умнее</p>
+                <div class="l-footer__badge">
+                    Сделано с
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#fb7185"/>
+                    </svg>
+                    для путешественников
+                </div>
+            </div>
+
+            <div class="l-footer__col">
+                <div class="l-footer__col-title">Компания</div>
+                <a href="#" class="l-footer__link">О проекте</a>
+                <a href="#" class="l-footer__link">Блог</a>
+            </div>
+
+            <div class="l-footer__col">
+                <div class="l-footer__col-title">Поддержка</div>
+                <a href="#" class="l-footer__link">Конфиденциальность</a>
+                <a href="#" class="l-footer__link">Условия использования</a>
+            </div>
+        </div>
+
+        <div class="l-footer__bottom">
+            <div class="l-footer__copy">© 2026 TravelPlan. Все права защищены.</div>
+        </div>
+    </div>
+</footer>
+
+<script src="main/utils.js"></script>
+<script src="main/api.js"></script>
+<script src="main/scripts.js"></script>
+</body>
+</html>

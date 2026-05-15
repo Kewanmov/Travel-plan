@@ -1,0 +1,496 @@
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель — TravelPlan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/admin.css"></head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <div class="sidebar-logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" fill="#fff"/>
+            </svg>
+        </div>
+        <span class="sidebar-logo-text">TravelPlan</span>
+        <span class="sidebar-badge">admin</span>
+    </div>
+
+    <nav class="sidebar-nav">
+        <button class="sidebar-item active" data-page="dashboard">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+                <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <span>Дашборд</span>
+        </button>
+
+        <button class="sidebar-item" data-page="users">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>Пользователи</span>
+        </button>
+
+        <button class="sidebar-item" data-page="trips">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Поездки</span>
+        </button>
+
+        <button class="sidebar-item" data-page="locations">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <span>Локации</span>
+        </button>
+
+        <button class="sidebar-item" data-page="currencies">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+                <path d="M12 6v12M9 9h4.5a1.5 1.5 0 0 1 0 3H9m0 0h4.5a1.5 1.5 0 0 1 0 3H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>Валюты</span>
+        </button>
+
+        <button class="sidebar-item" data-page="notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>Уведомления</span>
+        </button>
+    </nav>
+
+    <div class="sidebar-footer">
+        <a href="dashboard.html" class="sidebar-item sidebar-item--link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>На сайт</span>
+        </a>
+        <button class="sidebar-item sidebar-item--danger" id="logoutBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span>Выйти</span>
+        </button>
+    </div>
+</aside>
+
+<div class="admin-wrap">
+    <header class="topbar">
+        <button class="topbar-burger" id="burgerBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="3" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+
+        <h1 class="topbar-title" id="topbarTitle">Дашборд</h1>
+
+        <div class="topbar-right">
+            <div class="topbar-user" id="topbarUser">
+                <div class="topbar-avatar" id="topbarAvatar">A</div>
+                <div class="topbar-user-info">
+                    <div class="topbar-user-name" id="topbarName">Администратор</div>
+                    <div class="topbar-user-role">Администратор</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-content">
+
+        <div class="page active" id="page-dashboard">
+
+            <div class="adm-live" id="admLive">
+                <div class="adm-live-item">
+                    <div class="adm-live-item__label">Онлайн за 24ч</div>
+                    <div class="adm-live-item__val" id="liveOnline">—</div>
+                </div>
+                <div class="adm-live-item adm-live-item--green">
+                    <div class="adm-live-item__label">Новых юзеров</div>
+                    <div class="adm-live-item__val" id="liveNewUsers">—</div>
+                </div>
+                <div class="adm-live-item adm-live-item--orange">
+                    <div class="adm-live-item__label">Новых поездок</div>
+                    <div class="adm-live-item__val" id="liveNewTrips">—</div>
+                </div>
+                <div class="adm-live-item adm-live-item--purple">
+                    <div class="adm-live-item__label">Расходов за 24ч</div>
+                    <div class="adm-live-item__val" id="liveSpent">—</div>
+                </div>
+                <div class="adm-live-item">
+                    <div class="adm-live-item__label">Файлов в загрузках</div>
+                    <div class="adm-live-item__val" id="liveStorage">—</div>
+                </div>
+            </div>
+
+            <div class="adm-quick">
+                <a href="#" id="quickNotif">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    Отправить уведомление
+                </a>
+                <a href="#" id="quickCurrency">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    Обновить курсы валют
+                </a>
+                <a href="/api/admin/export/users.csv" id="quickExportUsers" download>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Экспорт пользователей
+                </a>
+                <a href="/api/admin/export/trips.csv" id="quickExportTrips" download>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Экспорт поездок
+                </a>
+            </div>
+
+            <div class="stats-row" id="statsRow">
+                <div class="stat-card">
+                    <div class="stat-card-icon" style="background:#eff8ff">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#01abfb" stroke-width="1.8" stroke-linecap="round"/>
+                            <circle cx="9" cy="7" r="4" stroke="#01abfb" stroke-width="1.8"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#01abfb" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-body">
+                        <div class="stat-card-value" id="sv-users">—</div>
+                        <div class="stat-card-label">Пользователей</div>
+                        <div class="stat-card-sub" id="ss-users"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon" style="background:#f0fdf4">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" stroke="#22c55e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-body">
+                        <div class="stat-card-value" id="sv-trips">—</div>
+                        <div class="stat-card-label">Поездок</div>
+                        <div class="stat-card-sub" id="ss-trips"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon" style="background:#fff7ed">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#f97316" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-body">
+                        <div class="stat-card-value" id="sv-locations">—</div>
+                        <div class="stat-card-label">Мест на картах</div>
+                        <div class="stat-card-sub" id="ss-tasks"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-icon" style="background:#faf5ff">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="#a855f7" stroke-width="1.8"/>
+                            <path d="M12 6v6l4 2" stroke="#a855f7" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-card-body">
+                        <div class="stat-card-value" id="sv-budget">—</div>
+                        <div class="stat-card-label">Записей расходов</div>
+                        <div class="stat-card-sub" id="ss-budget"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-title">Регистрации за 30 дней</div>
+                        <div class="card-hint" id="chartUsersHint"></div>
+                    </div>
+                    <div class="chart-area" id="chartUsers">
+                        <div class="chart-empty">Загрузка...</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-title">Поездки за 30 дней</div>
+                        <div class="card-hint" id="chartTripsHint"></div>
+                    </div>
+                    <div class="chart-area" id="chartTrips">
+                        <div class="chart-empty">Загрузка...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-title">Топ городов</div>
+                    </div>
+                    <div id="topCities"></div>
+                </div>
+                <div class="card">
+                    <div class="card-head">
+                        <div class="card-title">Расходы по категориям</div>
+                    </div>
+                    <div id="budgetCats"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page" id="page-users">
+            <div class="page-head">
+                <div>
+                    <div class="page-title">Пользователи</div>
+                    <div class="page-sub" id="usersSub"></div>
+                </div>
+                <a class="adm-export" href="/api/admin/export/users.csv" download>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    CSV
+                </a>
+            </div>
+            <div class="toolbar">
+                <div class="search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="#9ca3af" stroke-width="1.8"/>
+                        <path d="m21 21-4.35-4.35" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" id="usersSearch" placeholder="Поиск по имени или email..." class="search-input">
+                </div>
+                <select class="filter-select" id="usersRole">
+                    <option value="">Все роли</option>
+                    <option value="user">Пользователи</option>
+                    <option value="admin">Администраторы</option>
+                </select>
+                <select class="filter-select" id="usersStatus">
+                    <option value="">Все статусы</option>
+                    <option value="active">Активные</option>
+                    <option value="blocked">Заблокированные</option>
+                </select>
+            </div>
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Пользователь</th>
+                            <th>Email</th>
+                            <th>Роль</th>
+                            <th>Статус</th>
+                            <th>Поездок</th>
+                            <th>Регистрация</th>
+                            <th>Последний вход</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersBody">
+                        <tr><td colspan="8" class="table-loading">Загрузка...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination" id="usersPagination"></div>
+        </div>
+
+        <div class="page" id="page-trips">
+            <div class="page-head">
+                <div>
+                    <div class="page-title">Поездки</div>
+                    <div class="page-sub" id="tripsSub"></div>
+                </div>
+                <a class="adm-export" href="/api/admin/export/trips.csv" download>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    CSV
+                </a>
+            </div>
+            <div class="toolbar">
+                <div class="search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="#9ca3af" stroke-width="1.8"/>
+                        <path d="m21 21-4.35-4.35" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" id="tripsSearch" placeholder="Поиск по названию или городу..." class="search-input">
+                </div>
+                <select class="filter-select" id="tripsStatus">
+                    <option value="">Все статусы</option>
+                    <option value="active">Активные</option>
+                    <option value="completed">Завершённые</option>
+                    <option value="draft">Черновики</option>
+                    <option value="archived">Архив</option>
+                </select>
+            </div>
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Поездка</th>
+                            <th>Владелец</th>
+                            <th>Даты</th>
+                            <th>Статус</th>
+                            <th>Участники</th>
+                            <th>Места</th>
+                            <th>Задачи</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tripsBody">
+                        <tr><td colspan="8" class="table-loading">Загрузка...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination" id="tripsPagination"></div>
+        </div>
+
+        <div class="page" id="page-locations">
+            <div class="page-head">
+                <div>
+                    <div class="page-title">Локации</div>
+                    <div class="page-sub" id="locationsSub"></div>
+                </div>
+            </div>
+            <div class="toolbar">
+                <div class="search-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="8" stroke="#9ca3af" stroke-width="1.8"/>
+                        <path d="m21 21-4.35-4.35" stroke="#9ca3af" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" id="locationsSearch" placeholder="Поиск по названию..." class="search-input">
+                </div>
+            </div>
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Место</th>
+                            <th>Поездка</th>
+                            <th>Координаты</th>
+                            <th>Добавил</th>
+                            <th>Дата</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="locationsBody">
+                        <tr><td colspan="6" class="table-loading">Загрузка...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination" id="locationsPagination"></div>
+        </div>
+
+        <div class="page" id="page-currencies">
+            <div class="page-head">
+                <div>
+                    <div class="page-title">Валюты</div>
+                    <div class="page-sub">Управление курсами валют</div>
+                </div>
+            </div>
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Валюта</th>
+                            <th>Код</th>
+                            <th>Символ</th>
+                            <th>Курс к ₽</th>
+                            <th>Статус</th>
+                            <th>Обновлено</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="currenciesBody">
+                        <tr><td colspan="7" class="table-loading">Загрузка...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="page" id="page-notifications">
+            <div class="page-head">
+                <div>
+                    <div class="page-title">Уведомления</div>
+                    <div class="page-sub" id="notifSub"></div>
+                </div>
+                <button class="btn-add" id="sendNotifBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                        <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    </svg>
+                    Отправить
+                </button>
+            </div>
+            <div class="card card--table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Пользователь</th>
+                            <th>Тип</th>
+                            <th>Заголовок</th>
+                            <th>Сообщение</th>
+                            <th>Прочитано</th>
+                            <th>Дата</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="notifBody">
+                        <tr><td colspan="7" class="table-loading">Загрузка...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination" id="notifPagination"></div>
+        </div>
+
+    </main>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="modal-wrap" id="modalWrap" style="display:none">
+    <div class="modal" id="modal">
+        <div class="modal-head">
+            <div class="modal-title" id="modalTitle">Заголовок</div>
+            <button class="modal-close" id="modalClose">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <line x1="18" y1="6" x2="6" y2="18" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="6" y1="6" x2="18" y2="18" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-foot" id="modalFoot"></div>
+    </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="main/api.js"></script>
+<script src="main/header-user.js"></script>
+<script src="main/guard.js"></script>
+<script src="main/admin.js"></script>
+</body>
+</html>
